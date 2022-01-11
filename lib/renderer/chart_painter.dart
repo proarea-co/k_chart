@@ -418,6 +418,12 @@ class ChartPainter extends BaseChartPainter {
       case VerticalTextAlignment.right:
         offsetX = mWidth - tp.width;
         break;
+      case VerticalTextAlignment.outerLeft:
+        offsetX = -tp.width;
+        break;
+      case VerticalTextAlignment.outerRight:
+        offsetX = mWidth + tp.width;
+        break;
     }
 
     double top = y - tp.height / 2;
