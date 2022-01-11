@@ -4,7 +4,7 @@ import '../entity/candle_entity.dart';
 import '../k_chart_widget.dart' show MainState;
 import 'base_chart_renderer.dart';
 
-enum VerticalTextAlignment { left, right, outerLeft, outerRight }
+enum VerticalTextAlignment { left, right }
 //For TrendLine
 double? afzalMax;
 double? afzalScale;
@@ -253,12 +253,6 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
           break;
         case VerticalTextAlignment.right:
           offsetX = chartRect.width - tp.width;
-          break;
-        case VerticalTextAlignment.outerLeft:
-          offsetX = -tp.width;
-          break;
-        case VerticalTextAlignment.outerRight:
-          offsetX = chartRect.width + tp.width;
           break;
       }
 

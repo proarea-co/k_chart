@@ -199,6 +199,11 @@ class ChartPainter extends BaseChartPainter {
           lastPoint, curPoint, lastX, curX, size, canvas);
     }
 
+    if ((isLongPress == true || (isTapShowInfoDialog && isOnTap)) &&
+        isTrendLine == false) {
+      drawCrossLine(canvas, size);
+      drawCrossLineText(canvas, size);
+    }
     if (isTrendLine == true) drawTrendLines(canvas, size);
     canvas.restore();
   }
@@ -417,12 +422,6 @@ class ChartPainter extends BaseChartPainter {
         break;
       case VerticalTextAlignment.right:
         offsetX = mWidth - tp.width;
-        break;
-      case VerticalTextAlignment.outerLeft:
-        offsetX = -tp.width;
-        break;
-      case VerticalTextAlignment.outerRight:
-        offsetX = mWidth + tp.width;
         break;
     }
 
