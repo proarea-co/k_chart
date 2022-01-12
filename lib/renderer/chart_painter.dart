@@ -499,8 +499,8 @@ class ChartPainter extends BaseChartPainter {
     double x = getX(index);
     double y = getMainY(point.close);
     // k线图竖线
-    canvas.drawLine(Offset(x, mTopPadding),
-        Offset(x, size.height - mBottomPadding), paintY);
+    canvas.drawLine(Offset(x / scaleX, mTopPadding),
+        Offset(x / scaleX, size.height - mBottomPadding), paintY);
 
     Paint paintX = Paint()
       ..color = this.chartColors.hCrossColor
@@ -509,20 +509,17 @@ class ChartPainter extends BaseChartPainter {
     // k线图横线
     canvas.drawLine(Offset(-mTranslateX, y),
         Offset(-mTranslateX + mWidth / scaleX, y), paintX);
-
-    canvas.drawCircle(Offset(x, y), 2.0, paintX);
-
-    // if (scaleX >= 1) {
-    //   canvas.drawOval(
-    //       Rect.fromCenter(
-    //           center: Offset(x, y), height: 2.0 * scaleX, width: 2.0),
-    //       paintX);
-    // } else {
-    //   canvas.drawOval(
-    //       Rect.fromCenter(
-    //           center: Offset(x, y), height: 2.0, width: 2.0 / scaleX),
-    //       paintX);
-    // }
+    if (scaleX >= 1) {
+      canvas.drawOval(
+          Rect.fromCenter(
+              center: Offset(x, y), height: 2.0 * scaleX, width: 2.0),
+          paintX);
+    } else {
+      canvas.drawOval(
+          Rect.fromCenter(
+              center: Offset(x, y), height: 2.0, width: 2.0 / scaleX),
+          paintX);
+    }
   }
 
   TextPainter getTextPainter(text, color) {
