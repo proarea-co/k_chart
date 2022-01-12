@@ -199,11 +199,6 @@ class ChartPainter extends BaseChartPainter {
           lastPoint, curPoint, lastX, curX, size, canvas);
     }
 
-    if ((isLongPress == true || (isTapShowInfoDialog && isOnTap)) &&
-        isTrendLine == false) {
-      drawCrossLine(canvas, size);
-      drawCrossLineText(canvas, size);
-    }
     if (isTrendLine == true) drawTrendLines(canvas, size);
     canvas.restore();
   }
@@ -499,8 +494,8 @@ class ChartPainter extends BaseChartPainter {
     double x = getX(index);
     double y = getMainY(point.close);
     // k线图竖线
-    canvas.drawLine(Offset(xToTranslateX(x), mTopPadding),
-        Offset(xToTranslateX(x), size.height - mBottomPadding), paintY);
+    canvas.drawLine(Offset(x, mTopPadding),
+        Offset(x, size.height - mBottomPadding), paintY);
 
     Paint paintX = Paint()
       ..color = this.chartColors.hCrossColor
