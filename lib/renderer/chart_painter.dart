@@ -509,17 +509,20 @@ class ChartPainter extends BaseChartPainter {
     // k线图横线
     canvas.drawLine(Offset(-mTranslateX, y),
         Offset(-mTranslateX + mWidth / scaleX, y), paintX);
-    if (scaleX >= 1) {
-      canvas.drawOval(
-          Rect.fromCenter(
-              center: Offset(x, y), height: 2.0 * scaleX, width: 2.0),
-          paintX);
-    } else {
-      canvas.drawOval(
-          Rect.fromCenter(
-              center: Offset(x, y), height: 2.0, width: 2.0 / scaleX),
-          paintX);
-    }
+
+    canvas.drawCircle(Offset(x, y), 2.0, paintX);
+
+    // if (scaleX >= 1) {
+    //   canvas.drawOval(
+    //       Rect.fromCenter(
+    //           center: Offset(x, y), height: 2.0 * scaleX, width: 2.0),
+    //       paintX);
+    // } else {
+    //   canvas.drawOval(
+    //       Rect.fromCenter(
+    //           center: Offset(x, y), height: 2.0, width: 2.0 / scaleX),
+    //       paintX);
+    // }
   }
 
   TextPainter getTextPainter(text, color) {
