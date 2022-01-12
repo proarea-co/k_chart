@@ -499,8 +499,8 @@ class ChartPainter extends BaseChartPainter {
     double x = getX(index);
     double y = getMainY(point.close);
     // k线图竖线
-    canvas.drawLine(Offset(x + mWidth / scaleX, mTopPadding),
-        Offset(x + mWidth / scaleX, size.height - mBottomPadding), paintY);
+    canvas.drawLine(Offset(xToTranslateX(x), mTopPadding),
+        Offset(xToTranslateX(x), size.height - mBottomPadding), paintY);
 
     Paint paintX = Paint()
       ..color = this.chartColors.hCrossColor
