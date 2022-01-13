@@ -179,25 +179,32 @@ abstract class BaseChartPainter extends CustomPainter {
     double mainHeight = mDisplayHeight;
     mainHeight -= volHeight;
     mainHeight -= secondaryHeight;
+    double leftX = isVertivalTextLeft ? mOutsideVerticalTextPadding : 0;
+    double rightX =
+        isVertivalTextLeft ? mWidth + mOutsideVerticalTextPadding : mWidth;
 
     mMainRect = Rect.fromLTRB(
-      isVertivalTextLeft ? mOutsideVerticalTextPadding : 0,
+      leftX,
       mTopPadding,
-      isVertivalTextLeft ? mWidth + mOutsideVerticalTextPadding : mWidth,
+      rightX,
       mTopPadding + mainHeight,
     );
 
     if (volHidden != true) {
-      mVolRect = Rect.fromLTRB(0, mMainRect.bottom + mChildPadding, mWidth,
-          mMainRect.bottom + volHeight);
+      mVolRect = Rect.fromLTRB(
+        leftX,
+        mMainRect.bottom + mChildPadding,
+        rightX,
+        mMainRect.bottom + volHeight,
+      );
     }
 
     //secondaryState == SecondaryState.NONE隐藏副视图
     if (secondaryState != SecondaryState.NONE) {
       mSecondaryRect = Rect.fromLTRB(
-          0,
+          leftX,
           mMainRect.bottom + volHeight + mChildPadding,
-          mWidth,
+          rightX,
           mMainRect.bottom + volHeight + secondaryHeight);
     }
   }
