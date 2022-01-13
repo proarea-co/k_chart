@@ -108,7 +108,9 @@ abstract class BaseChartPainter extends CustomPainter {
     canvas.clipRect(Rect.fromLTRB(
       isVertivalTextLeft ? mOutsideVerticalTextPadding : 0,
       0,
-      size.width,
+      isVertivalTextLeft
+          ? size.width + mOutsideVerticalTextPadding
+          : size.width,
       size.height,
     ));
     mDisplayHeight = size.height - mTopPadding - mBottomPadding;
