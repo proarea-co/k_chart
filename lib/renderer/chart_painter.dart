@@ -50,7 +50,6 @@ class ChartPainter extends BaseChartPainter {
   final bool hideGrid;
   final bool showNowPrice;
   final VerticalTextAlignment verticalTextAlignment;
-  final bool isVertivalTextOutside;
 
   ChartPainter(
     this.chartStyle,
@@ -66,7 +65,6 @@ class ChartPainter extends BaseChartPainter {
     isOnTap,
     isTapShowInfoDialog,
     required this.verticalTextAlignment,
-    required this.isVertivalTextOutside,
     mainState,
     volHidden,
     secondaryState,
@@ -89,7 +87,9 @@ class ChartPainter extends BaseChartPainter {
             mainState: mainState,
             volHidden: volHidden,
             secondaryState: secondaryState,
-            isLine: isLine) {
+            isLine: isLine,
+            isVertivalTextLeft:
+                verticalTextAlignment == VerticalTextAlignment.left) {
     selectPointPaint = Paint()
       ..isAntiAlias = true
       ..strokeWidth = 0.5
@@ -123,7 +123,7 @@ class ChartPainter extends BaseChartPainter {
       this.chartColors,
       this.scaleX,
       verticalTextAlignment,
-      isVertivalTextOutside,
+      isVertivalTextLeft,
       maDayList,
     );
     if (mVolRect != null) {

@@ -48,6 +48,7 @@ abstract class BaseChartPainter extends CustomPainter {
   final ChartStyle chartStyle;
   late double mPointWidth;
   List<String> mFormats = [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn]; //格式化时间
+  final bool isVertivalTextLeft;
 
   BaseChartPainter(
     this.chartStyle, {
@@ -62,6 +63,7 @@ abstract class BaseChartPainter extends CustomPainter {
     this.isTapShowInfoDialog = false,
     this.secondaryState = SecondaryState.MACD,
     this.isLine = false,
+    this.isVertivalTextLeft = true,
   }) {
     mItemCount = datas?.length ?? 0;
     mPointWidth = this.chartStyle.pointWidth;
@@ -103,7 +105,12 @@ abstract class BaseChartPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.clipRect(Rect.fromLTRB(0, 0, size.width, size.height));
+    canvas.clipRect(Rect.fromLTRB(
+      isVertivalTextLeft ? mOutsideVerticalTextPadding : 0,
+      0,
+      size.width,
+      size.height,
+    ));
     mDisplayHeight = size.height - mTopPadding - mBottomPadding;
     mWidth = size.width - mOutsideVerticalTextPadding;
     initRect(size);
@@ -172,7 +179,7 @@ abstract class BaseChartPainter extends CustomPainter {
     mainHeight -= secondaryHeight;
 
     mMainRect = Rect.fromLTRB(
-      0,
+      isVertivalTextLeft ? mOutsideVerticalTextPadding : 0,
       mTopPadding,
       mWidth,
       mTopPadding + mainHeight,

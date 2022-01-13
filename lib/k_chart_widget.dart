@@ -157,8 +157,7 @@ class _KChartWidgetState extends State<KChartWidget>
         bgColor: widget.bgColor,
         fixedLength: widget.fixedLength,
         maDayList: widget.maDayList,
-        verticalTextAlignment: widget.verticalTextAlignment,
-        isVertivalTextOutside: widget.isVertivalTextOutside);
+        verticalTextAlignment: widget.verticalTextAlignment);
 
     return LayoutBuilder(
       builder: (context, constraints) {
