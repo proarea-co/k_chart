@@ -50,6 +50,7 @@ class ChartPainter extends BaseChartPainter {
   final bool hideGrid;
   final bool showNowPrice;
   final VerticalTextAlignment verticalTextAlignment;
+  final bool isVertivalTextOutside;
 
   ChartPainter(
     this.chartStyle,
@@ -65,6 +66,7 @@ class ChartPainter extends BaseChartPainter {
     isOnTap,
     isTapShowInfoDialog,
     required this.verticalTextAlignment,
+    required this.isVertivalTextOutside,
     mainState,
     volHidden,
     secondaryState,
@@ -121,6 +123,7 @@ class ChartPainter extends BaseChartPainter {
       this.chartColors,
       this.scaleX,
       verticalTextAlignment,
+      isVertivalTextOutside,
       maDayList,
     );
     if (mVolRect != null) {

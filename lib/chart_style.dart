@@ -72,6 +72,8 @@ class ChartStyle {
 
   double childPadding = 12.0;
 
+  double outsideVerticalTextPadding = 0.0;
+
   //点与点的距离
   double pointWidth = 11.0;
 

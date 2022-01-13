@@ -26,6 +26,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   double scaleX;
   late Paint mLinePaint;
   final VerticalTextAlignment verticalTextAlignment;
+  final bool isVertivalTextOutside;
 
   MainRenderer(
       Rect mainRect,
@@ -39,6 +40,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       this.chartColors,
       this.scaleX,
       this.verticalTextAlignment,
+      this.isVertivalTextOutside,
       [this.maDayList = const [5, 10, 20]])
       : super(
             chartRect: mainRect,
