@@ -181,7 +181,7 @@ abstract class BaseChartPainter extends CustomPainter {
     mMainRect = Rect.fromLTRB(
       isVertivalTextLeft ? mOutsideVerticalTextPadding : 0,
       mTopPadding,
-      mWidth,
+      isVertivalTextLeft ? mWidth + mOutsideVerticalTextPadding : mWidth,
       mTopPadding + mainHeight,
     );
 
