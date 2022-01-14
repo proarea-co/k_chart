@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
               hideGrid: _hideGrid,
 
               // isVertivalTextOutside: true,
-              verticalTextAlignment: VerticalTextAlignment.right,
+              verticalTextAlignment: VerticalTextAlignment.left,
               // isTapShowInfoDialog: false,
               maDayList: [1, 100, 1000],
             ),

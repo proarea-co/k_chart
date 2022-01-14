@@ -244,11 +244,15 @@ class ChartPainter extends BaseChartPainter {
   void drawDate(Canvas canvas, Size size) {
     if (datas == null) return;
 
-    double columnSpace = size.width / mGridColumns;
+    double columnSpace = (size.width - verticalTextPadding) / mGridColumns;
     double startX = getX(mStartIndex) - mPointWidth / 2;
     double stopX = getX(mStopIndex) + mPointWidth / 2;
+    final isVerticalTextAlignmentLeft =
+        verticalTextAlignment == VerticalTextAlignment.left;
+
     double x = 0.0;
     double y = 0.0;
+    double shift = isVerticalTextAlignmentLeft ? verticalTextPadding : 0;
     for (var i = 0; i <= mGridColumns; ++i) {
       double translateX = xToTranslateX(columnSpace * i);
 
@@ -258,7 +262,7 @@ class ChartPainter extends BaseChartPainter {
         if (datas?[index] == null) continue;
         TextPainter tp = getTextPainter(getDate(datas![index].time), null);
         y = size.height - (mBottomPadding - tp.height) / 2 - tp.height;
-        x = columnSpace * i - tp.width / 2;
+        x = columnSpace * i + shift - tp.width / 2;
         // Prevent date text out of canvas
         if (x < 0) x = 0;
         if (x > size.width - tp.width) x = size.width - tp.width;
