@@ -120,9 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
               //`isChinese` is Deprecated, Use `translations` instead.
               isChinese: isChinese,
               hideGrid: _hideGrid,
-
               // isVertivalTextOutside: true,
-              verticalTextAlignment: VerticalTextAlignment.left,
+              verticalTextAlignment: VerticalTextAlignment.right,
               // isTapShowInfoDialog: false,
               maDayList: [1, 100, 1000],
             ),
