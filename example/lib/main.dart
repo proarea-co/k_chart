@@ -36,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   List<KLineEntity>? datas;
   bool showLoading = true;
   MainState _mainState = MainState.MA;
-  bool _volHidden = false;
-  SecondaryState _secondaryState = SecondaryState.MACD;
+  bool _volHidden = true;
+  SecondaryState _secondaryState = SecondaryState.NONE;
   bool isLine = true;
   bool isChinese = true;
   bool _hideGrid = false;
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isChangeUI = false;
   bool _isTrendLine = false;
 
-  ChartStyle chartStyle = ChartStyle();
+  ChartStyle chartStyle = ChartStyle()..outsideVerticalTextPadding = 56;
   ChartColors chartColors = ChartColors();
 
   @override
@@ -120,7 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
               //`isChinese` is Deprecated, Use `translations` instead.
               isChinese: isChinese,
               hideGrid: _hideGrid,
-              isTapShowInfoDialog: false,
+
+              // isVertivalTextOutside: true,
+              verticalTextAlignment: VerticalTextAlignment.right,
+              // isTapShowInfoDialog: false,
               maDayList: [1, 100, 1000],
             ),
           ),

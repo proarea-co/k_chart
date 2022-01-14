@@ -104,6 +104,10 @@ class ChartPainter extends BaseChartPainter {
       ..isAntiAlias = true;
   }
 
+  double get verticalTextPadding => chartStyle.outsideVerticalTextPadding;
+  bool get isVertivalTextLeft =>
+      verticalTextAlignment == VerticalTextAlignment.left;
+
   @override
   void initChartRenderer() {
     if (datas != null && datas!.isNotEmpty) {
@@ -123,7 +127,7 @@ class ChartPainter extends BaseChartPainter {
       this.chartColors,
       this.scaleX,
       verticalTextAlignment,
-      isVertivalTextLeft,
+      chartStyle.outsideVerticalTextPadding,
       maDayList,
     );
     if (mVolRect != null) {
@@ -151,26 +155,42 @@ class ChartPainter extends BaseChartPainter {
       end: Alignment.topCenter,
       colors: bgColor ?? chartColors.bgColor,
     );
-    Rect mainRect =
-        Rect.fromLTRB(0, 0, mMainRect.width, mMainRect.height + mTopPadding);
+    Rect mainRect = Rect.fromLTRB(
+      0,
+      0,
+      mMainRect.width,
+      mMainRect.height + mTopPadding,
+    );
     canvas.drawRect(
         mainRect, mBgPaint..shader = mBgGradient.createShader(mainRect));
 
     if (mVolRect != null) {
       Rect volRect = Rect.fromLTRB(
-          0, mVolRect!.top - mChildPadding, mVolRect!.width, mVolRect!.bottom);
+        0,
+        mVolRect!.top - mChildPadding,
+        mVolRect!.width,
+        mVolRect!.bottom,
+      );
       canvas.drawRect(
           volRect, mBgPaint..shader = mBgGradient.createShader(volRect));
     }
 
     if (mSecondaryRect != null) {
-      Rect secondaryRect = Rect.fromLTRB(0, mSecondaryRect!.top - mChildPadding,
-          mSecondaryRect!.width, mSecondaryRect!.bottom);
+      Rect secondaryRect = Rect.fromLTRB(
+        0,
+        mSecondaryRect!.top - mChildPadding,
+        mSecondaryRect!.width,
+        mSecondaryRect!.bottom,
+      );
       canvas.drawRect(secondaryRect,
           mBgPaint..shader = mBgGradient.createShader(secondaryRect));
     }
-    Rect dateRect =
-        Rect.fromLTRB(0, size.height - mBottomPadding, size.width, size.height);
+    Rect dateRect = Rect.fromLTRB(
+      isVertivalTextLeft ? verticalTextPadding : 0,
+      size.height - mBottomPadding,
+      isVertivalTextLeft ? size.width + verticalTextPadding : size.width,
+      size.height,
+    );
     canvas.drawRect(
         dateRect, mBgPaint..shader = mBgGradient.createShader(dateRect));
   }

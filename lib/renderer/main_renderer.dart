@@ -26,7 +26,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   double scaleX;
   late Paint mLinePaint;
   final VerticalTextAlignment verticalTextAlignment;
-  final bool isVertivalTextOutside;
+  final double outsideVerticalTextPadding;
 
   MainRenderer(
       Rect mainRect,
@@ -40,7 +40,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       this.chartColors,
       this.scaleX,
       this.verticalTextAlignment,
-      this.isVertivalTextOutside,
+      this.outsideVerticalTextPadding,
       [this.maDayList = const [5, 10, 20]])
       : super(
             chartRect: mainRect,
@@ -270,15 +270,23 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   @override
   void drawGrid(Canvas canvas, int gridRows, int gridColumns) {
 //    final int gridRows = 4, gridColumns = 4;
+    final isVerticalTextAlignmentLeft =
+        verticalTextAlignment == VerticalTextAlignment.left;
+    double shift = isVerticalTextAlignmentLeft ? outsideVerticalTextPadding : 0;
+    double rowEndX = isVerticalTextAlignmentLeft
+        ? chartRect.width
+        : chartRect.width - outsideVerticalTextPadding;
     double rowSpace = chartRect.height / gridRows;
     for (int i = 0; i <= gridRows; i++) {
-      canvas.drawLine(Offset(0, rowSpace * i + topPadding),
-          Offset(chartRect.width, rowSpace * i + topPadding), gridPaint);
+      canvas.drawLine(Offset(shift, rowSpace * i + topPadding),
+          Offset(rowEndX, rowSpace * i + topPadding), gridPaint);
     }
-    double columnSpace = chartRect.width / gridColumns;
+    double columnSpace =
+        (chartRect.width - outsideVerticalTextPadding) / gridColumns;
     for (int i = 0; i <= columnSpace; i++) {
-      canvas.drawLine(Offset(columnSpace * i, topPadding / 3),
-          Offset(columnSpace * i, chartRect.bottom), gridPaint);
+      final x = columnSpace * i + shift;
+      canvas.drawLine(
+          Offset(x, topPadding / 3), Offset(x, chartRect.bottom), gridPaint);
     }
   }
 
