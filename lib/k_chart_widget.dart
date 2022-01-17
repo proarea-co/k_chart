@@ -137,28 +137,30 @@ class _KChartWidgetState extends State<KChartWidget>
       mScrollX = mSelectX = 0.0;
       mScaleX = 1.0;
     }
-    final _painter = ChartPainter(widget.chartStyle, widget.chartColors,
-        lines: lines, //For TrendLine
-        isTrendLine: widget.isTrendLine, //For TrendLine
-        selectY: mSelectY, //For TrendLine
-        datas: widget.datas,
-        scaleX: mScaleX,
-        scrollX: mScrollX,
-        selectX: mSelectX,
-        isLongPass: isLongPress,
-        isOnTap: isOnTap,
-        isTapShowInfoDialog: widget.isTapShowInfoDialog,
-        mainState: widget.mainState,
-        volHidden: widget.volHidden,
-        secondaryState: widget.secondaryState,
-        isLine: widget.isLine,
-        hideGrid: widget.hideGrid,
-        showNowPrice: widget.showNowPrice,
-        sink: mInfoWindowStream?.sink,
-        bgColor: widget.bgColor,
-        fixedLength: widget.fixedLength,
-        maDayList: widget.maDayList,
-        verticalTextAlignment: widget.verticalTextAlignment);
+    final _painter = ChartPainter(
+      widget.chartStyle, widget.chartColors,
+      lines: lines, //For TrendLine
+      isTrendLine: widget.isTrendLine, //For TrendLine
+      selectY: mSelectY, //For TrendLine
+      datas: widget.datas,
+      scaleX: mScaleX,
+      scrollX: mScrollX,
+      selectX: mSelectX,
+      isLongPass: isLongPress,
+      isOnTap: isOnTap,
+      isTapShowInfoDialog: widget.isTapShowInfoDialog,
+      mainState: widget.mainState,
+      volHidden: widget.volHidden,
+      secondaryState: widget.secondaryState,
+      isLine: widget.isLine,
+      hideGrid: widget.hideGrid,
+      showNowPrice: widget.showNowPrice,
+      sink: mInfoWindowStream?.sink,
+      bgColor: widget.bgColor,
+      fixedLength: widget.fixedLength,
+      maDayList: widget.maDayList,
+      verticalTextAlignment: widget.verticalTextAlignment,
+    );
 
     return LayoutBuilder(
       builder: (context, constraints) {

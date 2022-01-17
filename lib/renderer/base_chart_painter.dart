@@ -219,6 +219,8 @@ abstract class BaseChartPainter extends CustomPainter {
   calculateValue() {
     if (datas == null) return;
     if (datas!.isEmpty) return;
+    // double scrollShift = isVertivalTextLeft ? 0 : -mOutsideVerticalTextPadding;
+
     maxScrollX = getMinTranslateX().abs();
     setTranslateXFromScrollX(scrollX);
     double leftShift = isVertivalTextLeft ? mOutsideVerticalTextPadding : 0;
@@ -320,10 +322,15 @@ abstract class BaseChartPainter extends CustomPainter {
     }
   }
 
+  double get verticalTextPadding => chartStyle.outsideVerticalTextPadding;
+
   double xToTranslateX(double x) => -mTranslateX + x / scaleX;
 
   int indexOfTranslateX(double translateX) =>
       _indexOfTranslateX(translateX, 0, mItemCount - 1);
+
+  double get shift =>
+      isVertivalTextLeft ? verticalTextPadding : -verticalTextPadding;
 
   ///二分查找当前值的index
   int _indexOfTranslateX(double translateX, int start, int end) {
@@ -351,7 +358,7 @@ abstract class BaseChartPainter extends CustomPainter {
   ///根据索引索取x坐标
   ///+ mPointWidth / 2防止第一根和最后一根k线显示不���
   ///@param position 索引值
-  double getX(int position) => position * mPointWidth + mPointWidth / 2;
+  double getX(int position) => position * mPointWidth + mPointWidth / 2 + shift;
 
   KLineEntity getItem(int position) {
     return datas![position];

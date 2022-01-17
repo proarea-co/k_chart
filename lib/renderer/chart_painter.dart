@@ -104,10 +104,6 @@ class ChartPainter extends BaseChartPainter {
       ..isAntiAlias = true;
   }
 
-  double get verticalTextPadding => chartStyle.outsideVerticalTextPadding;
-  bool get isVertivalTextLeft =>
-      verticalTextAlignment == VerticalTextAlignment.left;
-
   @override
   void initChartRenderer() {
     if (datas != null && datas!.isNotEmpty) {

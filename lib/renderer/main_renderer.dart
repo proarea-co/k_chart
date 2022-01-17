@@ -116,6 +116,18 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   @override
   void drawChart(CandleEntity lastPoint, CandleEntity curPoint, double lastX,
       double curX, Size size, Canvas canvas) {
+    // final isVerticalTextLeft =
+    //     verticalTextAlignment == VerticalTextAlignment.left;
+    // double startX = isVerticalTextLeft ? 0 : outsideVerticalTextPadding;
+    // double endX = isVerticalTextLeft
+    //     ? size.width
+    //     : size.width - outsideVerticalTextPadding;
+    // canvas.clipRect(Rect.fromLTRB(
+    //   startX,
+    //   0,
+    //   endX,
+    //   size.height,
+    // ));
     if (isLine != true) {
       drawCandle(curPoint, canvas, curX);
     }
