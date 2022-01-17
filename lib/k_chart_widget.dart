@@ -138,7 +138,8 @@ class _KChartWidgetState extends State<KChartWidget>
       mScaleX = 1.0;
     }
     final _painter = ChartPainter(
-      widget.chartStyle, widget.chartColors,
+      widget.chartStyle,
+      widget.chartColors,
       lines: lines, //For TrendLine
       isTrendLine: widget.isTrendLine, //For TrendLine
       selectY: mSelectY, //For TrendLine

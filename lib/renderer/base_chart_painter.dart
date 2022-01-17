@@ -219,8 +219,6 @@ abstract class BaseChartPainter extends CustomPainter {
   calculateValue() {
     if (datas == null) return;
     if (datas!.isEmpty) return;
-    // double scrollShift = isVertivalTextLeft ? 0 : -mOutsideVerticalTextPadding;
-
     maxScrollX = getMinTranslateX().abs();
     setTranslateXFromScrollX(scrollX);
     double leftShift = isVertivalTextLeft ? mOutsideVerticalTextPadding : 0;

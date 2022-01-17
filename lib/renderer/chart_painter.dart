@@ -423,7 +423,7 @@ class ChartPainter extends BaseChartPainter {
           : this.chartColors.nowPriceDnColor;
     //先画横线
     double startX = 0;
-    final max = -mTranslateX + mWidth / scaleX;
+    final max = -mTranslateX + mWidth / scaleX + mWidth * scaleX;
     final space =
         this.chartStyle.nowPriceLineSpan + this.chartStyle.nowPriceLineLength;
     while (startX < max) {
