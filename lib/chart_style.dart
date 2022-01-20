@@ -75,6 +75,8 @@ class ChartStyle {
   //点与点的距离
   double pointWidth = 11.0;
 
+  double chartPadding = 0.0;
+
   //蜡烛宽度
   double candleWidth = 8.5;
 

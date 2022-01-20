@@ -222,8 +222,8 @@ class ChartPainter extends BaseChartPainter {
     if (datas == null) return;
 
     double columnSpace = size.width / mGridColumns;
-    double startX = getX(mStartIndex) - mPointWidth / 2;
-    double stopX = getX(mStopIndex) + mPointWidth / 2;
+    double startX = getX(mStartIndex) - mPointWidth / 2 - mChartPadding;
+    double stopX = getX(mStopIndex) + mPointWidth / 2 + mChartPadding;
     double x = 0.0;
     double y = 0.0;
     for (var i = 0; i <= mGridColumns; ++i) {

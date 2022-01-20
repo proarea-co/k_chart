@@ -44,6 +44,7 @@ abstract class BaseChartPainter extends CustomPainter {
   double mDataLen = 0.0; //数据占屏幕总长度
   final ChartStyle chartStyle;
   late double mPointWidth;
+  late double mChartPadding;
   List<String> mFormats = [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn]; //格式化时间
 
   BaseChartPainter(
@@ -62,6 +63,7 @@ abstract class BaseChartPainter extends CustomPainter {
   }) {
     mItemCount = datas?.length ?? 0;
     mPointWidth = this.chartStyle.pointWidth;
+    mChartPadding = this.chartStyle.chartPadding;
     mTopPadding = this.chartStyle.topPadding;
     mBottomPadding = this.chartStyle.bottomPadding;
     mChildPadding = this.chartStyle.childPadding;
@@ -317,7 +319,8 @@ abstract class BaseChartPainter extends CustomPainter {
   ///根据索引索取x坐标
   ///+ mPointWidth / 2防止第一根和最后一根k线显示不���
   ///@param position 索引值
-  double getX(int position) => position * mPointWidth + mPointWidth / 2;
+  double getX(int position) =>
+      position * mPointWidth + mPointWidth / 2 + mChartPadding;
 
   KLineEntity getItem(int position) {
     return datas![position];
@@ -334,7 +337,7 @@ abstract class BaseChartPainter extends CustomPainter {
 
   ///获取平移的最小值
   double getMinTranslateX() {
-    var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
+    var x = -mDataLen + mWidth / scaleX - mPointWidth / 2 - mChartPadding;
     return x >= 0 ? 0.0 : x;
   }
 
