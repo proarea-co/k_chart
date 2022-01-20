@@ -59,7 +59,8 @@ class KChartWidget extends StatefulWidget {
     this.datas,
     this.chartStyle,
     this.chartColors, {
-    required this.isTrendLine,
+    Key? key,
+    this.isTrendLine = false,
     this.mainState = MainState.MA,
     this.secondaryState = SecondaryState.MACD,
     this.onSecondaryTap,
@@ -81,7 +82,7 @@ class KChartWidget extends StatefulWidget {
     this.flingCurve = Curves.decelerate,
     this.isOnDrag,
     this.verticalTextAlignment = VerticalTextAlignment.left,
-  });
+  }) : super(key: key);
 
   @override
   _KChartWidgetState createState() => _KChartWidgetState();
