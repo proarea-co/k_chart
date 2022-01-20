@@ -45,6 +45,7 @@ abstract class BaseChartPainter extends CustomPainter {
   final ChartStyle chartStyle;
   late double mPointWidth;
   late double mChartPadding;
+  final bool isVerticalTextLeft;
   List<String> mFormats = [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn]; //格式化时间
 
   BaseChartPainter(
@@ -60,6 +61,7 @@ abstract class BaseChartPainter extends CustomPainter {
     this.isTapShowInfoDialog = false,
     this.secondaryState = SecondaryState.MACD,
     this.isLine = false,
+    required this.isVerticalTextLeft,
   }) {
     mItemCount = datas?.length ?? 0;
     mPointWidth = this.chartStyle.pointWidth;
@@ -332,13 +334,15 @@ abstract class BaseChartPainter extends CustomPainter {
   }
 
   ///scrollX 转换为 TranslateX
-  void setTranslateXFromScrollX(double scrollX) =>
-      mTranslateX = scrollX + getMinTranslateX();
+  void setTranslateXFromScrollX(double scrollX) {
+    final shift = isVerticalTextLeft ? mChartPadding : -mChartPadding;
+    mTranslateX = scrollX + getMinTranslateX() + shift;
+  }
 
   ///获取平移的最小值
   double getMinTranslateX() {
     var x = -mDataLen + mWidth / scaleX - mPointWidth / 2 - mChartPadding;
-    return x >= 0 ? 0.0 : x;
+    return x >= mChartPadding ? mChartPadding : x;
   }
 
   ///计算长按后x的值，转换为index

@@ -26,6 +26,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   double scaleX;
   late Paint mLinePaint;
   final VerticalTextAlignment verticalTextAlignment;
+  final double chartPadding;
 
   MainRenderer(
       Rect mainRect,
@@ -39,6 +40,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       this.chartColors,
       this.scaleX,
       this.verticalTextAlignment,
+      this.chartPadding,
       [this.maDayList = const [5, 10, 20]])
       : super(
             chartRect: mainRect,
@@ -145,7 +147,9 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
 //      mLinePath.cubicTo(
 //          (lastX + curX) / 2, getY(lastPrice), (lastX + curX) / 2, getY(curPrice), curX, getY(curPrice));
 //    }
-    if (lastX == curX) lastX = 0; //起点位置填充
+    double leftChartPadding =
+        verticalTextAlignment == VerticalTextAlignment.left ? chartPadding : 0;
+    if (lastX == curX) lastX = leftChartPadding; //起点位置填充
     mLinePath!.moveTo(lastX, getY(lastPrice));
     mLinePath!.cubicTo((lastX + curX) / 2, getY(lastPrice), (lastX + curX) / 2,
         getY(curPrice), curX, getY(curPrice));

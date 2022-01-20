@@ -87,7 +87,9 @@ class ChartPainter extends BaseChartPainter {
             mainState: mainState,
             volHidden: volHidden,
             secondaryState: secondaryState,
-            isLine: isLine) {
+            isLine: isLine,
+            isVerticalTextLeft:
+                verticalTextAlignment == VerticalTextAlignment.left) {
     selectPointPaint = Paint()
       ..isAntiAlias = true
       ..strokeWidth = 0.5
@@ -121,6 +123,7 @@ class ChartPainter extends BaseChartPainter {
       this.chartColors,
       this.scaleX,
       verticalTextAlignment,
+      this.chartStyle.chartPadding,
       maDayList,
     );
     if (mVolRect != null) {
