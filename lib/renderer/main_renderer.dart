@@ -27,6 +27,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   late Paint mLinePaint;
   final VerticalTextAlignment verticalTextAlignment;
   final double chartPadding;
+  final int itemCount;
 
   MainRenderer(
       Rect mainRect,
@@ -41,6 +42,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       this.scaleX,
       this.verticalTextAlignment,
       this.chartPadding,
+      this.itemCount,
       [this.maDayList = const [5, 10, 20]])
       : super(
             chartRect: mainRect,
@@ -117,7 +119,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   void drawChart(CandleEntity lastPoint, CandleEntity curPoint, double lastX,
       double curX, Size size, Canvas canvas) {
     if (isLine != true) {
-      drawCandle(curPoint, canvas, curX);
+      drawCandle(curPoint, canvas, curX, size);
     }
     if (isLine == true) {
       drawPolyline(lastPoint.close, curPoint.close, canvas, lastX, curX);
@@ -210,11 +212,14 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     }
   }
 
-  void drawCandle(CandleEntity curPoint, Canvas canvas, double curX) {
+  void drawCandle(
+      CandleEntity curPoint, Canvas canvas, double curX, Size size) {
     var high = getY(curPoint.high);
     var low = getY(curPoint.low);
     var open = getY(curPoint.open);
     var close = getY(curPoint.close);
+    mCandleWidth = size.width / itemCount;
+    mCandleLineWidth = mCandleWidth / 3;
     double r = mCandleWidth / 2;
     double lineR = mCandleLineWidth / 2;
     if (open >= close) {

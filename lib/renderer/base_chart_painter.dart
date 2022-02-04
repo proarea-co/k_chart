@@ -64,14 +64,14 @@ abstract class BaseChartPainter extends CustomPainter {
     required this.isVerticalTextLeft,
   }) {
     mItemCount = datas?.length ?? 0;
-    mPointWidth = this.chartStyle.pointWidth;
+    // mPointWidth = this.chartStyle.pointWidth;
     mChartPadding = this.chartStyle.chartPadding;
     mTopPadding = this.chartStyle.topPadding;
     mBottomPadding = this.chartStyle.bottomPadding;
     mChildPadding = this.chartStyle.childPadding;
     mGridRows = this.chartStyle.gridRows;
     mGridColumns = this.chartStyle.gridColumns;
-    mDataLen = mItemCount * mPointWidth;
+    // mDataLen = mItemCount * mPointWidth;
     initFormats();
   }
 
@@ -106,6 +106,8 @@ abstract class BaseChartPainter extends CustomPainter {
     canvas.clipRect(Rect.fromLTRB(0, 0, size.width, size.height));
     mDisplayHeight = size.height - mTopPadding - mBottomPadding;
     mWidth = size.width;
+    mDataLen = mWidth - mChartPadding;
+    mPointWidth = mDataLen / mItemCount;
     initRect(size);
     calculateValue();
     initChartRenderer();

@@ -124,6 +124,7 @@ class ChartPainter extends BaseChartPainter {
       this.scaleX,
       verticalTextAlignment,
       this.chartStyle.chartPadding,
+      datas?.length ?? 0,
       maDayList,
     );
     if (mVolRect != null) {
